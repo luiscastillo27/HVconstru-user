@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="blueCover">
+    <ion-title>{{titulo}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="close()" color="light">
+         <ion-icon class="btn-app" name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <form #formServicio="ngForm">
+
+      <ion-item>
+          <button (click)="abriImagen()" class="btn-full" ion-button color="secondary" outline>Abrir imagen</button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Titulo</ion-label>
+        <ion-input [(ngModel)]="nombreIcono" name="nombreIcono" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Descripción</ion-label>
+        <ion-textarea [(ngModel)]="descripcionServicio" name="descripcionServicio" rows="2" cols="10" required></ion-textarea>
+      </ion-item>
+
+      <ion-fab right bottom>
+        <button ion-fab color="secondary" (click)="agregarServicio()" [disabled]="!formServicio.valid">
+           <ion-icon ios="ios-add" md="md-add"></ion-icon>
+        </button>
+      </ion-fab>
+
+  </form>
+
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="blueCover">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Ajustes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content scroll="false">
+    <div class="splash-bg"></div>
+    <div class="splash-info">
+      <div class="splash-logo">
+        <img src="./assets/images/user.png" alt="">
+      </div>
+    </div>
+    <div>
+
+      <button ion-item (click)="perfil()">
+        <ion-avatar item-left >
+          <img src="./assets/images/user.png" alt="">
+        </ion-avatar>
+        Luis Castillo
+      </button>
+
+      <button ion-item (click)="salir()">
+        <ion-icon item-left name="exit"></ion-icon>
+        Cerrar sesión
+      </button>
+
+    </div>
+
+    <ion-fab right top class="btn-fab">
+      <button ion-fab color="light">
+        <ion-icon name="images"></ion-icon>
+      </button>
+    </ion-fab>
+    
+</ion-content>

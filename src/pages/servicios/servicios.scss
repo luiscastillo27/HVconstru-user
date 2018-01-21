@@ -1,0 +1,20 @@
+page-servicios {
+
+  ion-card.cards-list-demo ion-card-header {
+    color: map-get($colors, primary);
+    border-bottom: solid 2px #ddd;
+  }
+
+  .text-justify{
+    text-align: justify;
+  }
+
+  .btn-app{
+    font-size: 27px;
+  }
+
+  ion-list{
+    border-bottom: solid 2px #ddd;
+  }
+
+}

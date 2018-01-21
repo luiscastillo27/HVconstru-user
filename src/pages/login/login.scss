@@ -1,0 +1,75 @@
+page-login {
+
+  .tabbar,
+  .tab,
+  .tabbar.show-tabbar{
+    opacity: 0 !important;
+  }
+
+  .splash-bg {
+    position: relative;
+    background: url('../assets/images/splashbg.png') no-repeat transparent;
+    background-size: cover;
+    height: 30%;
+    z-index: 1;
+    background-repeat: repeat-x;
+    animation: animatedBackground 40s linear infinite;
+  }
+
+  @keyframes animatedBackground {
+    from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+  }
+
+  .splash-info {
+    position: relative;
+    z-index: 2;
+    margin-top: -64px;
+    text-align: center;
+  }
+  .splash-logo {
+    margin: auto;
+    background: url('../assets/images/appicon.png') repeat transparent;
+    background-size: 100%;
+    width: 128px;
+    height: 128px;
+  }
+  .splash-intro {
+    font-size: 18px;
+    font-weight: bold;
+    max-width: 80%;
+    margin: auto;
+    color: red;
+  }
+
+  .content-form{
+    display: block;
+    width: 85%;
+    margin: 0px auto;
+    padding: 10px;
+    background: white;
+  }
+
+  form{
+    display: table;
+    width: 100%;
+  }
+
+  ion-item{
+    display: block;
+    margin-left: -5px !important;
+  }
+
+  .centrar{
+    display: table;
+    width: 99%;
+    margin-bottom: 10px;
+  }
+
+  .small{
+    width: auto;
+    float: right;
+    margin-top: 27px;
+  }
+
+}

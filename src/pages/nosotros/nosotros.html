@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-navbar color="blueCover">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Nosotros</ion-title>
+    <ion-buttons end>
+      <button *ngIf="!mover" ion-button (click)="add()" color="light">
+         <ion-icon class="btn-app" name="add-circle"></ion-icon>
+      </button>
+      <button *ngIf="mover" ion-button (click)="close()" color="light">
+         <ion-icon class="btn-app" name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-slides>
+  <!-- <ion-slides #slides> -->
+
+      <ion-slide>
+
+        <ion-card>
+
+            <img src="./assets/images/cover.jpg" alt="">
+            <ion-fab right top>
+              <button ion-fab (click)="subirImagen()">
+                <ion-icon name="images"></ion-icon>
+              </button>
+            </ion-fab>
+
+            <ion-card-content class="text-justify">
+              <h2>Institute of Fine Cocktails</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet minima iure placeat temporibus, illum minus laborum! Ducimus sint consequatur placeat praesentium. Molestias ducimus neque consequuntur voluptas molestiae odit minima doloremque.</p>
+            </ion-card-content>
+
+            <ion-item>
+              <ion-icon name="wine" item-left large ></ion-icon>
+              <h2>Institute of Fine Cocktails</h2>
+              <p>14 S. Hop Avenue, Madison, WI 53703</p>
+            </ion-item>
+
+
+          </ion-card>
+
+      </ion-slide>
+      <ion-slide>
+
+        <ion-list>
+          <form #forma="ngForm">
+              <ion-item>
+                <ion-label floating>Texto de nosotros</ion-label>
+                <ion-textarea [(ngModel)]="nombreLista" name="nombreLista" rows="2" cols="10" required></ion-textarea>
+              </ion-item>
+
+              <ion-item>
+                <ion-label floating>Item</ion-label>
+                <ion-textarea [(ngModel)]="nombreItem" name="nombreItem" rows="2" cols="10" required></ion-textarea>
+              </ion-item>
+
+              <div padding>
+                <button [disabled]="!forma.valid" ion-button outline class="button-block" (click)="crearItem()">Agregar elemento</button>
+              </div>
+          </form>
+        </ion-list>
+
+
+        <ion-card *ngIf="items.length > 0">
+
+            <ion-card-header>
+              nombre de la lista
+              <hr>
+            </ion-card-header>
+
+            <ion-card-content>
+
+              <ion-list>
+
+                <ion-item *ngFor="let item of items; let i = index">
+
+                    <button ion-button color="dark" clear>
+                      {{item.nombre}}
+                    </button>
+
+                    <button ion-button outline item-right color="danger" (click)="eliminarItem(i)">
+                      <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+                      Eliminar item
+                    </button>
+
+                </ion-item>
+
+              </ion-list>
+
+            </ion-card-content>
+
+
+        </ion-card>
+
+        <ion-fab right bottom>
+          <button ion-fab color="secondary" (click)="agregarlista()">
+             <ion-icon ios="ios-add" md="md-add"></ion-icon>
+          </button>
+        </ion-fab>
+
+
+      </ion-slide>
+
+  </ion-slides>
+
+
+
+
+
+
+
+</ion-content>

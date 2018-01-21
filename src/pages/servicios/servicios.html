@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar color="blueCover">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Servicios</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="add()" color="light">
+         <ion-icon class="btn-app" name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+
+  <form #formServicio="ngForm"  padding>
+    <ion-item>
+      <ion-label floating>Descripcion de los servicios</ion-label>
+      <ion-input [(ngModel)]="nombreIcono" name="nombreIcono" (keyup.enter)="guardarDescripcion()" required></ion-input>
+    </ion-item>
+  </form>
+
+  <button ion-item (click)="editarServicio(1)">
+    <ion-icon item-left name="card"></ion-icon>
+    <h2>Shopping</h2>
+    <p class="text-justify">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam eaque ullam fugit dolor ipsam quaerat obcaecati doloribus porro voluptatem, repellat explicabo soluta cum, ratione quisquam quo nulla consectetur aliquam pariatur.
+    </p>
+  </button>
+
+
+</ion-content>
