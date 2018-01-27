@@ -42629,6 +42629,19 @@ page-login .small {
   margin-top: 27px;
 }
 
+page-login .mitad {
+  display: inline-block;
+  width: 48.6%;
+}
+
+page-login .mitad.face {
+  background: #3D4BA3;
+}
+
+page-login .mitad.google {
+  background: #FF0019;
+}
+
 page-nosotros ion-card.adv-map p {
   font-size: 0.7em !important;
 }
@@ -42652,6 +42665,11 @@ page-nosotros .text-justify {
 
 page-nosotros .btn-app {
   font-size: 27px;
+}
+
+page-nosotros .btn-fab {
+  margin-top: 50px;
+  margin-right: -10px;
 }
 
 page-portafolio .btn-app {

@@ -1,73 +1,47 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class LoginService {
 
   public usuario:any = {};
-  public usuarios:any = {};
+  public usuariosInfo:any[] = [];
   public uid:any;
   user: firebase.User;
 
   constructor( private _fire:AngularFirestore, public _auth:AngularFireAuth ) {
 
-     this._auth.authState.subscribe( user => {
+    this._auth.authState.subscribe( user => {
 
-        if( !user ){
-          return;
-        }
+       if( !user ){
+         return;
+       }
 
-        this.usuario.nombre = user.displayName;
-        this.usuario.uid = user.uid;
-        this.uid = user.uid;
-        //console.log( this.usuario );
-        this.mostrarUsuarios( this.uid ).valueChanges().subscribe( data => {
-          console.log( data );
-        });
+       this.usuario.nombre = user.displayName;
+       this.usuario.uid = user.uid;
+       console.log( this.usuario );
 
-
-     });
-
-  }
-
-  public loginEmailPass( correo:string, password:string ){
-    //console.log(correo, password);
-    this._auth.auth.signInWithEmailAndPassword( correo, password ).then(resp => {
-      return 'Se ha iniciado sesion correctamente';
-    })
-    .catch(err => {
-      if( err.message == 'There is no user record corresponding to this identifier. The user may have been deleted.'){
-        return 'El usuario no existe en la db';
-      }
-      if( err.message == 'The email address is badly formatted.'){
-        return 'Este no es un correo';
-      }
-      return;
     });
 
   }
 
-  public loginService( proveedor: string, correo?:string, password?:string ){
+  public obtenerInfoUser(){
 
-    switch( proveedor ) {
-      case 'auth':
-          this.loginEmailPass( correo, password );
-      break;
-        case 'google':
-            this._auth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-        break;
-        case 'facebook':
-            this._auth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
-        break;
-        case 'twitter':
-            this._auth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
-        break;
-    }
+    this.mostrarUsuarios( this.usuario.uid ).valueChanges().subscribe( data => {
+      this.usuariosInfo.push( data );
+      return this.usuariosInfo;
+    });
 
+  }
+
+
+
+  public iniciarsesion( correo:string, password:string ){
+    this.obtenerInfoUser();
+    return this._auth.auth.signInWithEmailAndPassword( correo, password );
   }
 
   public crearUsuario( correo:string, password:string ){
@@ -92,23 +66,13 @@ export class LoginService {
   }
 
   public mostrarUsuarios( uid ){
-
     const path = `/usuarios/${uid}`;
     return this._fire.doc(path);
-    // this._fire.collection('usuarios').valueChanges().subscribe( resp =>{
-    //   console.log(resp);
-    // })
-
-
   }
 
   public cerrarsesion(){
     this.usuario = {};
-     this._auth.auth.signOut().then(function( data ) {
-        console.log("sesion terminada... ", data);
-     }).catch(function(error) {
-        console.log("Se ha producido un error ", error);
-     });
+    return this._auth.auth.signOut();
   }
 
 

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, AlertController, Slides, ToastController } from 'ionic-angular';
+import { NavController, AlertController, Slides, ToastController , LoadingController } from 'ionic-angular';
 import { InicioPage } from '../inicio/inicio';
 import { LocalStorageService } from '../../providers/localstorage.services';
 import { TutorialPage } from '../tutorial/tutorial';
@@ -30,7 +30,8 @@ export class LoginPage {
     public alertCtrl: AlertController,
     public _local:LocalStorageService,
     public toastCtrl: ToastController,
-    private _login:LoginService
+    private _login:LoginService,
+    public loadingCtrl: LoadingController
   ) {
 
   }
@@ -41,57 +42,89 @@ export class LoginPage {
     this._login.crearUsuario( correo, passwd );
   }
 
-  public iniciarSesion( proveedor?: string ){
+
+  public iniciarSesion(){
+
     let correo = this.login["loginCorreo"];
     let passwd = this.login["loginPassword"];
-    //let iniciar = this._login.loginService(proveedor, correo, passwd);
 
-    let tutoAdmin = this._local.cargarTutorialAdmin();
-    let tutoSuper = this._local.cargarTutorialSupervisor();
-    let tutoEmple = this._local.cargarTutorialEmpleado();
-
-    if(  ( tutoAdmin == undefined ) || ( tutoEmple == undefined ) || ( tutoEmple == undefined )  ){
-
-      if( (correo == "admin") && (passwd == "admin") && ( tutoAdmin == undefined )  ){
-          this.navCtrl.setRoot(TutorialPage, {
-            nombre: 'admin'
-          },{
-            animate: true,
-            direction: 'forward'
-          });
-          this._local.guardarSesion();
-          return;
-      }
-
-      if( (correo == "super") && (passwd == "super") && ( tutoSuper == undefined ) ){
-          this.navCtrl.setRoot(TutorialPage, {
-            nombre: 'super'
-          },{
-            animate: true,
-            direction: 'forward'
-          });
-          this._local.guardarSesion();
-          return;
-      }
-
-      if( (correo == "luis") && (passwd == "luis") && ( tutoEmple == undefined ) ){
-          this.navCtrl.setRoot(TutorialPage, {
-            nombre: 'empleado'
-          },{
-            animate: true,
-            direction: 'forward'
-          });
-          this._local.guardarSesion();
-          return;
-      }
-
-    }
-
-    this.navCtrl.setRoot(InicioPage, {}, {
-      animate: true,
-      direction: 'forward'
+    let loading = this.loadingCtrl.create({
+      content: 'Cargando...'
     });
-    this._local.guardarSesion();
+
+    loading.present();
+    setTimeout(() => {
+
+        this._login.iniciarsesion(correo, passwd).then(resp => {
+
+
+              let dataUser = this._login.usuariosInfo;
+              let tipoUser = dataUser[0]["tipo"];
+              this._local.guardarSesion( tipoUser );
+              if(  ( this.tutorialAdmin == undefined ) || ( this.tutorialSupervisor == undefined ) || ( this.tutorialEmpleado == undefined )  ){
+
+                   if( tipoUser == "Admin" && this.tutorialAdmin == undefined ){
+                       this.navCtrl.setRoot(TutorialPage, {
+                         nombre: 'admin'
+                       },{
+                         animate: true,
+                         direction: 'forward'
+                       });
+                       return;
+                   }
+
+                   if( tipoUser == "Super" && this.tutorialSupervisor == undefined ){
+                       this.navCtrl.setRoot(TutorialPage, {
+                         nombre: 'super'
+                       },{
+                         animate: true,
+                         direction: 'forward'
+                       });
+                       return;
+                   }
+
+                   if( tipoUser == "Empleado" && this.tutorialEmpleado == undefined ){
+                       this.navCtrl.setRoot(TutorialPage, {
+                         nombre: 'empleado'
+                       },{
+                         animate: true,
+                         direction: 'forward'
+                       });
+                       return;
+                   }
+
+            }
+
+             this.navCtrl.setRoot(InicioPage, {}, {
+               animate: true,
+               direction: 'forward'
+             });
+
+
+
+        }).catch(err => {
+
+          if( err.message == 'There is no user record corresponding to this identifier. The user may have been deleted.'){
+            let alert = this.alertCtrl.create({
+              title: 'Alerta',
+              subTitle: 'Este usuario no existe',
+              buttons: ['Ok']
+            });
+            alert.present();
+            console.log('El usuario no existe en la db');
+          }
+          if( err.message == 'The email address is badly formatted.'){
+            let alert = this.alertCtrl.create({
+              title: 'Error',
+              subTitle: 'Este no es un correo electronico',
+              buttons: ['Ok']
+            });
+            alert.present();
+          }
+        });
+
+      loading.dismiss();
+   }, 5000);
 
   }
 

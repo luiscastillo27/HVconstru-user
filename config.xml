@@ -3,6 +3,12 @@
     <name>VHcontru service</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <universal-links>
+        <host name="https://r6ww2.app.goo.gl" scheme="https" />
+        <host name="hvconstru-3e65a.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -83,6 +89,10 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.11" />
     <plugin name="cordova-plugin-statusbar" spec="~2.4.1" />
     <plugin name="cordova-plugin-camera" spec="^4.0.1" />
+    <plugin name="cordova-plugin-buildinfo" spec="^2.0.1" />
+    <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
+    <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^2.0.1" />
     <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="^4.5.4" />
 </widget>

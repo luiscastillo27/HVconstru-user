@@ -27,7 +27,23 @@
     },
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "io.iwebsapp.vhconstru.service"
+    },
+    "cordova-plugin-buildinfo": {
+      "PACKAGE_NAME": "io.iwebsapp.vhconstru.service"
+    },
+    "cordova-universal-links-plugin": {
+      "PACKAGE_NAME": "io.iwebsapp.vhconstru.service"
+    },
+    "cordova-plugin-browsertab": {
+      "PACKAGE_NAME": "io.iwebsapp.vhconstru.service"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "io.iwebsapp.vhconstru.service"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "io.iwebsapp.vhconstru.service"
+    }
+  }
 }

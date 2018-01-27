@@ -8,8 +8,8 @@ export class LocalStorageService {
     //console.log("hola soy el servicio");
   }
   //SESION
-  public guardarSesion(){
-    localStorage.setItem("sesion", "Logeado");
+  public guardarSesion( tipo ){
+    localStorage.setItem("sesion", tipo);
   }
 
   public cargarSesion(){

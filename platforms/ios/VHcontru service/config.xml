@@ -40,9 +40,28 @@
     <feature name="Camera">
         <param name="ios-package" value="CDVCamera" />
     </feature>
+    <feature name="BuildInfo">
+        <param name="ios-package" value="CDVBuildInfo" />
+    </feature>
+    <feature name="UniversalLinks">
+        <param name="ios-package" value="CULPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="BrowserTab">
+        <param name="ios-package" value="CBTBrowserTab" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
     <name>VHcontru service</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <universal-links>
+        <host name="https://r6ww2.app.goo.gl" scheme="https" />
+        <host name="hvconstru-3e65a.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
