@@ -20,13 +20,41 @@ export class LocalStorageService {
     localStorage.setItem("sesion", "");
   }
 
-  //TUTORIAL
-  public guardarTutorial(){
-    localStorage.setItem("tutorial", "Tutorial");
+  //TUTORIAL INICIO
+  public guardarTutorialInicio(){
+    localStorage.setItem("tutorialInicio", "Hecho");
   }
 
-  public cargarTutorial(){
-    return localStorage["tutorial"];
+  public cargarTutorialInicio(){
+    return localStorage["tutorialInicio"];
+  }
+
+
+  //TUTORIAL ADMIN
+  public guardarTutorialAdmin(){
+    localStorage.setItem("tutorialAdmin", "Hecho");
+  }
+
+  public cargarTutorialAdmin(){
+    return localStorage["tutorialAdmin"];
+  }
+
+  //TUTORIAL SUPERVISOR
+  public guardarTutorialSupervisor(){
+    localStorage.setItem("tutorialSupervisor", "Hecho");
+  }
+
+  public cargarTutorialSupervisor(){
+    return localStorage["tutorialSupervisor"];
+  }
+
+  //TUTORIAL EMPLEADO
+  public guardarTutorialEmpleado(){
+    localStorage.setItem("tutorialEmpleado", "Hecho");
+  }
+
+  public cargarTutorialEmpleado(){
+    return localStorage["tutorialEmpleado"];
   }
 
 

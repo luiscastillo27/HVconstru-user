@@ -42654,6 +42654,11 @@ page-nosotros .btn-app {
   font-size: 27px;
 }
 
+page-nosotros .btn-fab {
+  margin-top: 50px;
+  margin-right: -10px;
+}
+
 page-portafolio .btn-app {
   font-size: 27px;
 }

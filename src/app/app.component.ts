@@ -33,7 +33,7 @@ export class MyApp implements OnInit {
     public _local:        LocalStorageService
   ) {
 
-    let tutorial = this._local.cargarTutorial();
+    let tutorial = this._local.cargarTutorialInicio();
     let sesion = this._local.cargarSesion();
     if( tutorial !== undefined ){
 

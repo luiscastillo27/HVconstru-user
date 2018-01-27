@@ -26,6 +26,21 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { IconosPage } from '../pages/iconos/iconos';
 
 import { LocalStorageService } from '../providers/localstorage.services';
+import { TutorialService } from '../providers/tutorial.services';
+import { LoginService } from '../providers/login.services';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyA2aCccfRN8F-yZMtowfOZ7DXS0rHm6O28",
+    authDomain: "hvconstru-3e65a.firebaseapp.com",
+    databaseURL: "https://hvconstru-3e65a.firebaseio.com",
+    projectId: "hvconstru-3e65a",
+    storageBucket: "hvconstru-3e65a.appspot.com",
+    messagingSenderId: "1066940438012"
+};
 
 @NgModule({
   declarations: [
@@ -50,6 +65,9 @@ import { LocalStorageService } from '../providers/localstorage.services';
   imports: [
     BrowserModule,
     HttpModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -76,6 +94,8 @@ import { LocalStorageService } from '../providers/localstorage.services';
     StatusBar,
     SplashScreen,
     LocalStorageService,
+    TutorialService,
+    LoginService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

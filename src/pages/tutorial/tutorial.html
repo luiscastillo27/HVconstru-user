@@ -1,55 +1,28 @@
 <ion-header>
   <ion-navbar color="blueCover">
-    <ion-buttons end>
+    <!-- <ion-buttons end>
       <button ion-button icon-right (click)="iniciar()">
         Saltar
         <ion-icon name="home"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
+    <ion-title>Bienvenido!</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="bg-tutorial">
   <ion-slides pager="true">
 
-    <ion-slide>
-      <img src="./assets/images/ica-slidebox-img-1.png" class="slide-image" />
-      <h2 class="slide-title">Bienvenido a HVconstru</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias excepturi ipsum officiis beatae aliquam quis temporibus.</p>
-      <button ion-button icon-right (click)="irSlide(1)">
-        Siguiente
-        <ion-icon name="arrow-round-forward"></ion-icon>
+    <ion-slide *ngFor="let item of tutorial; let i = index">
+      <img src="./assets/images/{{item.img}}" class="slide-image" />
+      <h2 class="slide-title">{{item.titulo}}</h2>
+      <p>{{item.desc}}</p>
+      <button ion-button icon-right (click)="irSlide( i + 1 , item.tipo)">
+        {{item.btntitulo}}
+        <ion-icon name="{{item.icon}}"></ion-icon>
       </button>
     </ion-slide>
 
-    <ion-slide>
-      <img src="./assets/images/ica-slidebox-img-2.png" class="slide-image" />
-      <h2 class="slide-title">Comó usar HVconstru</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident incidunt iusto nemo numquam cupiditate quis, quam laborum, facilis corrupti labore beatae ipsum.</p>
-      <button ion-button icon-right (click)="irSlide(2)">
-        Siguiente
-        <ion-icon name="arrow-round-forward"></ion-icon>
-      </button>
-    </ion-slide>
-
-    <ion-slide>
-      <img src="./assets/images/ica-slidebox-img-3.png" class="slide-image" />
-      <h2 class="slide-title">Empezando</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      <button ion-button icon-right (click)="irSlide(3)">
-        Siguiente
-        <ion-icon name="arrow-round-forward"></ion-icon>
-      </button>
-    </ion-slide>
-
-    <ion-slide>
-      <img src="./assets/images/ica-slidebox-img-4.png" class="slide-image" />
-      <h2 class="slide-title">Listo para empezar</h2>
-      <button ion-button icon-right (click)="iniciar()">
-        Entrar
-        <ion-icon name="home"></ion-icon>
-      </button>
-    </ion-slide>
 
   </ion-slides>
 </ion-content>
